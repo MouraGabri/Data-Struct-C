@@ -2,7 +2,6 @@
 #include <stdlib.h>
 
 int tamanho_vetor;
-
 struct cadastro_alunos
 {
     int matricula;
@@ -10,39 +9,40 @@ struct cadastro_alunos
 };
 struct cadastro_alunos *alunos;
 
-void cadastrar_alunos()
-
-    printf("Quantos Alunos serao cadastrados?:");
+void cadastro_aluno()
+{
+    printf("Informe o tamanho do vetor:");
     scanf("%d", &tamanho_vetor);
 
     alunos = malloc(tamanho_vetor * sizeof(struct cadastro_alunos));
 
     if (alunos == NULL)
     {
-        printf("Erro ao alocar a memória\n");
+        printf("Alocacao mal Sucedida");
         return 1;
     }
-
     else
     {
-        printf("Alocacao feita com sucesso!!\n");
+        printf("Alocacao Bem  Sucedida\n");
     }
 
     for (int i = 0; i < tamanho_vetor; i++)
     {
-        printf("Matricula do Aluno:%d:", i);
+        printf("Matricula do Aluno:", i);
         scanf("%d", &alunos[i].matricula);
 
-        printf("G1:%d:", i);
+        printf("G1:");
         scanf("%lf", &alunos[i].g1);
 
-        printf("G2:%d:", i);
+        printf("G2:");
         scanf("%lf", &alunos[i].g2);
+
+        alunos[i].media = ((alunos[i].g1 + alunos[i].g2) / 2);
+        printf("Media: %.2f", alunos[i].media);
     }
 }
-
 int main()
 {
-    cadastrar_alunos();
+    cadastro_aluno();
     return 0;
 }
